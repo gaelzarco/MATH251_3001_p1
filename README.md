@@ -39,17 +39,19 @@ Let
 
 where each $a_i, b_i \in \{0,1\}$.
 
-The program computes three new bit strings  
-$C = A \land B$, $D = A \lor B$, and $E = A \oplus B$ defined component-wise:
+The program computes three new bit strings:
+- $C = A \land B$
+- $D = A \lor B$
+- $E = A \oplus B$ denoted by:
 
 - **AND:**  
-  $c_i = 1$ iff $a_i = 1$ **and** $b_i = 1$; otherwise $c_i = 0$.
+  $c_i = 1$ \Leftrightarrow $a_i = 1$ **and** $b_i = 1$; otherwise $c_i = 0$.
 
 - **OR:**  
-  $d_i = 1$ iff $a_i = 1$ **or** $b_i = 1$ (or both); otherwise $d_i = 0$.
+  $d_i = 1$ \Leftrightarrow $a_i = 1$ **or** $b_i = 1$ (or both); otherwise $d_i = 0$.
 
 - **XOR** (“exclusive or”):  
-  $e_i = 1$ iff $a_i \neq b_i$; otherwise $e_i = 0$.
+  $e_i = 1$ \Leftrightarrow $a_i \neq b_i$; otherwise $e_i = 0$.
 
 So, for example, if
 
