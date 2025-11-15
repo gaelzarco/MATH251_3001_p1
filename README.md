@@ -26,7 +26,7 @@ The program:
    - bitwise XOR  
 3. Prints the resulting bit strings.
 
-This directly mirrors propositional logic on pairs of propositions, but applied **component-wise** along a whole string.
+_This directly mirrors propositional logic._
 
 ---
 
@@ -34,33 +34,35 @@ This directly mirrors propositional logic on pairs of propositions, but applied 
 
 Let  
 
-- \( A = a_1 a_2 \dots a_n \)  
-- \( B = b_1 b_2 \dots b_n \)  
+- $A = a_1 a_2 \dots a_n$  
+- $B = b_1 b_2 \dots b_n$  
 
-where each \( a_i, b_i \in \{0,1\} \).
+where each $a_i, b_i \in \{0,1\}$.
 
-The program computes three new bit strings \( C = A \land B \),  
-\( D = A \lor B \), and \( E = A \oplus B \) defined component-wise:
+The program computes three new bit strings  
+$C = A \land B$, $D = A \lor B$, and $E = A \oplus B$ defined component-wise:
 
-- **AND**:  
-  \( c_i = 1 \) iff \( a_i = 1 \) **and** \( b_i = 1 \); otherwise \( c_i = 0 \).
-- **OR**:  
-  \( d_i = 1 \) iff \( a_i = 1 \) **or** \( b_i = 1 \) (or both); otherwise \( d_i = 0 \).
+- **AND:**  
+  $c_i = 1$ iff $a_i = 1$ **and** $b_i = 1$; otherwise $c_i = 0$.
+
+- **OR:**  
+  $d_i = 1$ iff $a_i = 1$ **or** $b_i = 1$ (or both); otherwise $d_i = 0$.
+
 - **XOR** (“exclusive or”):  
-  \( e_i = 1 \) iff \( a_i \neq b_i \); otherwise \( e_i = 0 \).
+  $e_i = 1$ iff $a_i \neq b_i$; otherwise $e_i = 0$.
 
 So, for example, if
 
-- \( A = 1010 \)  
-- \( B = 1100 \)
+- $A = 1010$  
+- $B = 1100$
 
 then
 
-- \( A \land B = 1000 \)  
-- \( A \lor B = 1110 \)  
-- \( A \oplus B = 0110 \)
+- $A \land B = 1000$  
+- $A \lor B = 1110$  
+- $A \oplus B = 0110$
 
-The program automates these computations.
+_This program automates these computations._
 
 ---
 
@@ -87,7 +89,7 @@ struct BitString {
 
 - Stores the underlying string of bits.
 - Implements logic operations one character at a time.
-- Uses assert to ensure both bit strings are the same length before computing.
+- Uses `assert` to ensure both bit strings are the same length before computing.
 
 ---
 
@@ -121,4 +123,4 @@ ENTER BIT-STRING B (MUST BE 4 BITS LONG): 1100
 - `assert` will terminate the program if the two strings differ in length.
 
 This program was used to answer a question from:
-Rosen, K. H. (2019). Discrete mathematics and its applications (8th ed.). McGraw-Hill Education.
+Rosen, K. H. (2019). _Discrete mathematics and its applications_ (8th ed.). McGraw-Hill Education.
