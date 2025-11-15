@@ -1,6 +1,6 @@
 // file   p1.cxx
 // author Gael Zarco <gael.zarco@student.csn.edu>
-// date   11-14-2025
+// date   11-16-2025
 // brief  This program demonstrates bitwise AND, OR, and XOR operations using a
 //        simple bit-string data type.
 // note   Created as part of Project 1 submission for MATH251
