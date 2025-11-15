@@ -90,7 +90,7 @@ struct BitString {
 ### 3.2 Key features:
 
 - Stores the underlying string of bits.
-- Implements logic operations one character at a time.
+- Implements logic operations one bit at a time.
 - Uses `assert` to ensure both bit strings are the same length before computing.
 
 ---
