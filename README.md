@@ -45,13 +45,13 @@ The program computes three new bit strings:
 - $E = A \oplus B$ denoted by:
 
 - **AND:**  
-  $c_i = 1$ \Leftrightarrow $a_i = 1$ **and** $b_i = 1$; otherwise $c_i = 0$.
+  $c_i = 1$ $\Leftrightarrow$ $a_i = 1$ **and** $b_i = 1$; otherwise $c_i = 0$.
 
 - **OR:**  
-  $d_i = 1$ \Leftrightarrow $a_i = 1$ **or** $b_i = 1$ (or both); otherwise $d_i = 0$.
+  $d_i = 1$ $\Leftrightarrow$ $a_i = 1$ **or** $b_i = 1$ (or both); otherwise $d_i = 0$.
 
 - **XOR** (“exclusive or”):  
-  $e_i = 1$ \Leftrightarrow $a_i \neq b_i$; otherwise $e_i = 0$.
+  $e_i = 1$ $\Leftrightarrow$ $a_i \neq b_i$; otherwise $e_i = 0$.
 
 So, for example, if
 
