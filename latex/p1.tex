@@ -1,0 +1,262 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\declaretheoremstyle[name=Definition,]{defsty}
+\declaretheorem[style=thmsty,numberwithin=section]{definition}
+\tcolorboxenvironment{definition}{colback=LightGray}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Example,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{example}
+\tcolorboxenvironment{example}{colback=LightOrange}
+
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+\doublespacing
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.0pt} \\
+		\LARGE \textbf{\uppercase{Bit-wise Logical Operations on Finite Bit Strings}
+		\HRule{1.0pt} \\ [0.25cm] \LARGE{Chapter 1: Question 2 (\textit{Computer Projects})} \vspace*{5\baselineskip}}
+		}
+\date{}
+\author{\textbf{Gael Zarco} \\
+        College of Southern Nevada \\
+		  MATH 251 - Discrete Mathematics \\
+		Professor Frank \\
+        }
+
+\maketitle
+\newpage
+
+% ------------------------------------------------------------------------------
+
+\section{Introduction}
+
+Logical operations are fundamental to discrete mathematics and computer science alike. Specifically, operations such as \textbf{AND}, \textbf{OR}, and \textbf{XOR} comprise the basis of bit operations and logical connectives. Because computers represent information using binary digits, the ability to manipulate bit strings is essential for a wide variety of computational applications in the modern age; this includes data compression algorithms, advanced AI programs, image editing software, and more \cite{COD}.
+
+We will explore exactly how computers perform these operations by delving into the problem statement presented in \textit{Discrete Mathematics and Its Applications (Eighth Edition) \cite{DMIA}, Chapter 1, "Computer Projects", Question 2}:
+
+\begin{tcolorbox}[
+    colback=gray!15,    % background color
+    colframe=gray!60,   % border color
+    left=5mm,           % indentation
+    right=5mm,
+    boxrule=0.5pt       % border thickness
+]
+    Given two bit strings of length $n$, find the bit-wise \textbf{AND}, \textbf{OR}, and \textbf{XOR} of 
+    these strings.
+\end{tcolorbox}
+
+I will walk you through a basic \texttt{C++} program that solves this problem. The program takes two user provided bit strings (both of size $n$) and computes all three bit-wise operation results. Beyond serving as a programming exercise, the program demonstrates how propositional logic can be applied to model mathematical concepts.
+
+This paper explains the mathematical background of bit-wise operations and illustrates their implementation in a computer program through the use of an abstract \texttt{BitString} data type.
+
+\section{Background}
+
+\begin{definition}
+    A \textbf{bit string} of length $n$ is a finite sequence of binary digits. Let $A$ \& $B$ denote two bit strings of a shared length $n$
+
+    $$
+    A = a_1 a_2 \dots a_n \qquad B = b_1 b_2 \dots b_n
+    $$
+
+    such that $a_i$ and $b_i$ represent either \textit{false} ($0$) or \textit{true} ($1$).\newline
+
+    The resulting bit string of the same length, $n$, after performing a single bit-wise operation \textbf{AND}, \textbf{OR}, or \textbf{XOR} is denoted as
+
+    $$
+    C = c_1c_2...c_n
+    $$
+
+    such that $c_i$ represents either \textit{false} ($0$) or \textit{true} ($1$).
+\end{definition}
+
+The bit-wise operations are defined as the following:
+
+\begin{definition}
+    \textbf{Bit-wise AND}:
+
+    $$
+    c_i = 1 \iff (a_i = 1 \land b_i = 1)
+    $$
+\end{definition}
+
+\begin{definition}
+    \textbf{Bit-wise OR}:
+
+    $$
+    c_i = 1 \iff (a_i = 1 \lor b_i = 1)
+    $$
+\end{definition}
+
+\begin{definition}
+    \textbf{Bit-wise XOR}:
+
+    $$
+    c_i = 1 \iff (a_i \oplus b_i )
+    $$
+\end{definition}
+
+These operations can be applied to two bit strings by applying the rule to each pair of shared bits in positions $i = 1,2,...,n$.
+
+\begin{example}
+$$
+A = 100 \text{ and } B = 110
+$$
+
+each bit-wise operation applied to both bit strings results in:
+
+$$
+A \land B = 100 \qquad A \lor B = 110 \qquad A \oplus B = 010
+$$
+\end{example}
+
+\section{Program}
+
+The program requests the user to input two bit strings of equal lengths and performs the previously defined bit-wise operations sequentially, ensuring to output the result of each operation to the user.
+
+\texttt{C++11} was utilized to implement a custom \texttt{BitString} data type that encapsulates a length $n$ bit string and the bit-wise operations. The string is stored as a \texttt{string} provided by the \texttt{C++} standard library as follows:
+
+\begin{lstlisting}[language=C++]
+    std::string m_data;         // Data member within BitString data type
+\end{lstlisting}
+
+The bit-wise operations are implemented as functions defined as members of the \texttt{BitString} data type. They take in one argument which is of the type \texttt{BitString} (the other bit string to compare). Each function iterates through both strings and compares their binary values at the current index, $i$. The result of the bit-wise operation is stored in a separate string that is returned as the output of the function. However, the functions differ in the logical comparisons that are performed across each bit pair.
+
+The following is a list of essential information to understand the following implementations:
+\begin{itemize}
+    \item \texttt{result\_p} is a pointer to the current bit in the result bit string.
+    \item \texttt{data\_p} is a pointer to the current bit stored within \texttt{m\_data} (the function caller's bit string).
+    \item \texttt{other\_p} is a pointer to the current bit of the \texttt{other} bit string that is being compared.
+\end{itemize}
+
+\subsection{AND Implementation}
+\begin{lstlisting}[language=C++]
+    // The resulting bit is assigned 1 if the current pair of bits in the input strings are equal to 1
+    *result_p = (*data_p == '1' && *other_p == '1') ? '1' : '0';
+\end{lstlisting}
+
+\subsection{OR Implementation}
+\begin{lstlisting}[language=C++]
+    // The resulting bit is assigned 1 if the current bit in either input string is equal to 1
+    *result_p = (*data_p == '1' || *other_p == '1') ? '1' : '0';
+\end{lstlisting}
+
+\subsection{XOR Implementation}
+\begin{lstlisting}[language=C++]
+    // The resulting bit is assigned 1 if the current pair of bits in the input strings are not equal to each
+    other
+    *result_p = (*data_p != *other_p) ? '1' : '0';
+\end{lstlisting}
+
+\subsection{Enforcing Shared Lengths}
+The program terminates using the \texttt{assert} function provided by the \texttt{cassert} library if the lengths of both bit strings are not equal to one another.
+
+\begin{lstlisting}[language=C++]
+    // This is implemented in all bit-wise operation functions
+    assert(m_data.size() == other.size());
+\end{lstlisting}
+
+This results in a fatal error that terminates program execution.
+
+\section{Execution}
+
+\begin{example}
+    \textbf{Program Execution}
+    \begin{lstlisting}
+    ENTER BIT-STRING A: 11010
+    ENTER BIT-STRING B (MUST BE 5 BITS LONG): 01101
+
+        AND RESULT: 01000
+        OR RESULT: 11111
+        XOR RESULT: 10111
+
+    \end{lstlisting}
+\end{example}
+
+The program prompts the user to enter two bit strings separately and outputs the results of the bit-wise operations.
+
+\section{Conclusion}
+
+The program demonstrates how bit-wise operations can be implemented to model mathematical concepts and their importance in computer science. These operations build the foundation of Boolean logic and power our modern world today. 
+
+The structure and execution of the program solves the original problem statement presented earlier by encapsulating a bit string data type with the \textbf{AND}, \textbf{OR}, and \textbf{XOR} operations. This project can be expanded upon further by implementing a larger amount of bit-wise operations since the \texttt{BitString} class can encapsulate the majority of the necessary functions. Additionally, the program assumes that the user will only input $1$'s and $0$'s without validating the input. Input outside of $1$'s and $0$'s is undefined behavior.
+
+The entirety of the code can be found publicly on my GitHub, along with the source code for this paper \cite{GOAT}.
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% Reference and Cited Works
+% ------------------------------------------------------------------------------
+
+\bibliographystyle{IEEEtran}
+\bibliography{References.bib}
+
+% ------------------------------------------------------------------------------
+
+\end{document}

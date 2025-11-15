@@ -1,9 +1,6 @@
-# Project 1 – Bitwise Operations with Bit Strings
+# Project 1 – Bit-wise Logical Operations on Finite Bit Strings
 
-**File:** `p1.cxx`  
-**Author:** Gael Zarco  
 **Course:** MATH 251  
-**Date:** 2025-11-14  
 
 ---
 
@@ -11,11 +8,6 @@
 
 This program is a small demonstration of how logical connectives  
 **AND**, **OR**, and **XOR** act on *bit strings* (strings of 0s and 1s).
-
-Each bit string represents a finite sequence of truth values:
-
-- `1` = **True**
-- `0` = **False**
 
 The program:
 
@@ -26,49 +18,8 @@ The program:
    - bitwise XOR  
 3. Prints the resulting bit strings.
 
-_This directly mirrors propositional logic._
-
 ---
-
-## 2. Mathematical Interpretation
-
-Let  
-
-- $A = a_1 a_2 \dots a_n$  
-- $B = b_1 b_2 \dots b_n$  
-
-where each $a_i, b_i \in \{0,1\}$.
-
-The program computes three new bit strings:
-- $C = A \land B$
-- $D = A \lor B$
-- $E = A \oplus B$ denoted by:
-
-- **AND:**  
-  $c_i = 1$ $\Leftrightarrow$ $a_i = 1$ **and** $b_i = 1$; otherwise $c_i = 0$.
-
-- **OR:**  
-  $d_i = 1$ $\Leftrightarrow$ $a_i = 1$ **or** $b_i = 1$ (or both); otherwise $d_i = 0$.
-
-- **XOR** (“exclusive or”):  
-  $e_i = 1$ $\Leftrightarrow$ $a_i \neq b_i$; otherwise $e_i = 0$.
-
-So, for example, if
-
-- $A = 1010$  
-- $B = 1100$
-
-then
-
-- $A \land B = 1000$  
-- $A \lor B = 1110$  
-- $A \oplus B = 0110$
-
-_This program automates these computations._
-
----
-
-## 3. How the Code Is Organized
+## 3. Data Type(s)
 
 ### 3.1 `BitString` data type
 
@@ -83,7 +34,7 @@ struct BitString {
     std::size_t size() noexcept;
     std::string::iterator begin() noexcept;
     std::string::iterator end() noexcept;
-    std::string m_data;    // underlying "0101..." string
+    std::string m_data;
 };
 ```
 
